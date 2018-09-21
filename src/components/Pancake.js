@@ -2,6 +2,7 @@ import React from "react";
 
 class Pancake extends React.Component {
   constructor(props) {
+    console.log('component constructed');
     super(props);
 
     this.state = {
@@ -10,9 +11,13 @@ class Pancake extends React.Component {
     };
   }
 
-  // TODO: create a componentDidMount() which will start the interval to count how long the pancake has been cooking
+componentDidMount = () => {
+  this.startInterval()
+}
 
-  // TODO: create a componentWillUnmount() which will clear the interval
+componentWillUnmount = () => {
+  this.cleanUpInterval()
+}
 
   updateCounter = () => {
     this.setState({
@@ -58,6 +63,7 @@ class Pancake extends React.Component {
   };
 
   render() {
+    console.log('component rendered');
     const { timeCooked, flippedAt } = this.state;
     const firstSide = Boolean(this.state.flippedAt === undefined);
     const status = this.getPancakeStatus();
